@@ -14,18 +14,27 @@
     </div>
 </template>
 <script>
-export default{
-name:'product-list',
-data(){
-    return {
-        products:[],
-        selectedProduct:null
-    };
-},
-methods:{
-    select(product){
-    this.selectedProduct = product;
-    }
-  }
+  export default {
+    name: 'product-list',
+    data()  {
+        return {
+            products:[],
+            selectedProduct:null
+        };
+        },
+        mounted() {
+            fetch('/api/products')
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    this.products = data
+                });
+        },
+        methods: {
+            select(product) {
+                this.selectedProduct = product;
+            }
+        }
 };
 </script>

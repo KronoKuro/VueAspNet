@@ -1,5 +1,5 @@
 <template>
-    <!--<div>
+    <div id="user">
         <h1>Welcome to Hands on Vue.js with ASP.NET Core!</h1>
         <p>
             The time is: {{ time }}
@@ -13,26 +13,29 @@
                 </li>
             </ul>
         </p>
-        <ProductList></ProductList>
-    </div>-->
-    <router-view></router-view>
+        
+    </div>
 </template>
 
 <script>
-    import ProductList from "./products/List.vue";
-    import UserVue from "./users/User.vue";
+   
     export default {
-        name: 'app',
-        components: {
-            ProductList: ProductList,
-            UserList: UserVue
-        },
+        name: 'user',
         data() {
             return {
                 time: new Date().toString(),
-                
+                user: [],
+                //products:[],
             }
         },
-       
+        mounted() {
+            fetch('/api/user')
+                .then(response => {
+                    return response.json()
+                })
+                .then(data => {
+                    this.user = data
+                });
+        }
 }
 </script>

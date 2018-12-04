@@ -6,10 +6,10 @@ using Vue.Infrastructure;
 namespace Vue.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductController : Controller
+    public class ProductsController : Controller
     {
         private readonly ApplicationContext _db;
-        public ProductController(ApplicationContext db)
+        public ProductsController(ApplicationContext db)
         {
             _db = db;
         }
